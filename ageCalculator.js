@@ -44,7 +44,7 @@ submitBtn.addEventListener('click', ()=>{
   // console.log('num checked!')
   if (ERROR === false)
   { 
-    getDaysMonthsYears();
+    getDaysMonthsYears_2();
     displayValues();
   }
 })
@@ -155,95 +155,25 @@ const checkInput = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-/* const isLeapYear = (year) => {
-  return year%4==0 && (year%100!==0 || year%400===0);
-}
-
-const getDaysInMonth = (month, year) => {
-  // const arr = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  const arr1 = [1, 3, 5, 7, 8, 10, 12];
-  if (arr1.findIndex((nr) => nr===month)!==-1)
-    return 31;
-  else{
-    if (month === 2)
-      return isLeapYear(year) ? 29 : 28;
-    return 30;
-  }
-}
-
-const youAreOld = () => {
-
-  const daysAlive = daysSince(currentDay, currentMonth, currentYear) - daysSince(birthDay, birthMonth, birthYear);
-  const leapYrs = daysFromLeapYears(currentYear) - daysFromLeapYears(birthYear);
-  const years = parseInt((daysAlive-leapYrs)/365);
-  
-  // console.log('in');
-  let newYear = years + birthYear;
-  let month = birthMonth;
-  let day = birthDay;
-
-  let daysUntil = daysAlive-leapYrs-years*365;
-  let monthsCounter = 0;
-
-  // let daysThisMonth = 
-  let maxLen = getDaysInMonth(month, newYear);
-  while (month !== currentMonth || day !== currentDay || newYear !== currentYear){
-    // console.log(day, month, newYear);
-
-    if (day === maxLen){
-      day=0;
-      month++;
-      monthsCounter++;
-      if (month > 12){
-        month = 1;
-        newYear ++;
-      }
-      // console.log('reset days', day, month, newYear, 'MONTHS C: ', monthsCounter);
-      maxLen = getDaysInMonth(month, newYear);
+const getDaysMonthsYears_2 = () => {
+  let days = currentDay - birthDay;
+  let todayMonth = currentMonth;
+  let todayYear = currentYear;
+  if (days < 0){
+    todayMonth--;
+    if (todayMonth < 1){
+      todayYear--;
+      todayMonth+=12;
     }
-
-    day++;
+    let daysInMonth = new Date(todayYear, todayMonth, 0).getDate();
+    days += daysInMonth;
   }
-  
-  const arr = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
-  const DAYS = daysAlive - (years*365 + leapYrs) - arr[month];
-  // console.log(DAYS);
-
-  yourAge.days = DAYS;
-  yourAge.months = monthsCounter;
-  yourAge.years = years;
-} */
-
-
-
-const daysFromLeapYears = (year, month) => {
-  return month > 2? Math.floor(year/4) - Math.floor(year/100) + Math.floor(year/400): 
-    Math.floor((year-1)/4) - Math.floor((year-1)/100) + Math.floor((year-1)/400);
-}
-
-const daysSince = (day, month, year) => {
-  const arr = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
-  let daySinceBirth = year*365 + arr[month-1] + day + daysFromLeapYears(year, month);
-  return daySinceBirth;
-}
-
-const getDaysMonthsYears = () =>{
-  const daysAlive = daysSince(currentDay, currentMonth, currentYear) - daysSince(birthDay, birthMonth, birthYear);
-  const years = parseInt(daysAlive / 365.2425);
-  const months = parseInt(daysAlive % 365.2425 / 30.437);
-  const days = parseInt(daysAlive - (years*365.2425 + months*30.437));
-  // console.log(years, months, days);
+  let months = todayMonth - birthMonth;
+  if (months < 0){
+    todayYear--;
+    months+=12;
+  }
+  let years = todayYear - birthYear;
   yourAge.years = years;
   yourAge.months = months;
   yourAge.days = days;
