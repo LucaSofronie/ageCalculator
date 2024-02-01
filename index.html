@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <form id="form">
+      <div class="container1">
+        <div class="day">
+          <p class="day-month-year">DAY</p>
+          <input type="number" id="number-input" placeholder="DD">
+          <p class="error-message">error</p>
+        </div>
+        <div class="month">
+          <p class="day-month-year">MONTH</p>
+          <input type="number" id="number-input" placeholder="MM">
+          <p class="error-message">error</p></div>
+        <div class="year">
+          <p class="day-month-year">YEAR</p>
+          <input type="number" id="number-input" placeholder="YYYY">
+          <p class="error-message">error</p></div>
+      </div>
+      <div class="container2">
+        <div class="divider"></div>
+        <button id="submit-btn" type="submit">
+          <img src="assets/images/logo.svg" alt="logo">
+        </button>
+      </div>
+      <div class="container3">
+
+        <h2 class="years">
+          <strong class="age-years">--</strong>
+          years
+        </h2>
+
+        <h2 class="months">
+          <strong class="age-months">--</strong>
+          months
+        </h2>
+
+        <h2 class="years">
+          <strong class="age-days">--</strong>
+          days
+        </h2>
+
+      </div>
+    </form>
+  </body>
+  <script src="ageCalculator.js"></script>
+</html>
